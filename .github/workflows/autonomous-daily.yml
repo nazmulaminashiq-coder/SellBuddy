@@ -1,0 +1,83 @@
+name: Autonomous Daily Operations
+
+on:
+  schedule:
+    # Run every day at 8 AM UTC
+    - cron: '0 8 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  autonomous-run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Create necessary directories
+        run: |
+          mkdir -p data/logs
+          mkdir -p content
+          mkdir -p reports
+
+      - name: Run Autonomous Controller
+        run: |
+          echo "Starting autonomous daily operations..."
+          python bots/autonomous_controller.py daily
+
+      - name: Run Product Research
+        run: |
+          echo "Running product research..."
+          python bots/product_research_bot.py || true
+
+      - name: Generate Marketing Content
+        run: |
+          echo "Generating marketing content..."
+          python bots/viral_marketing_bot.py || true
+
+      - name: Update Analytics Dashboard
+        run: |
+          echo "Updating analytics..."
+          python bots/analytics_dashboard.py || true
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "SellBuddy Bot"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🤖 Autonomous daily update - $(date +'%Y-%m-%d')
+
+            - Products updated
+            - Content generated
+            - Analytics refreshed
+
+            [automated]"
+            git push
+          fi
+
+  trigger-deploy:
+    needs: autonomous-run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Pages Deploy
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy-store.yml',
+              ref: 'main'
+            })
