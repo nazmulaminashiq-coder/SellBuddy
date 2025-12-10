@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - SellBuddy | Frequently Asked Questions</title>
+    <meta name="description" content="Find answers to common questions about SellBuddy orders, shipping, returns, and more.">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">Sell<span>Buddy</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"></path>
+                </svg>
+            </button>
+            <nav id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Shop</a>
+                <a href="about.html">About</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+                <button class="snipcart-checkout cart-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    Cart (<span class="snipcart-items-count">0</span>)
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about our products and services</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / FAQ
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="section">
+            <div class="container">
+                <div class="faq-list">
+                    <!-- Shipping FAQs -->
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary);">Shipping & Delivery</h3>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            How long does shipping take?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Shipping times vary by location:</p>
+                            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                                <li><strong>United States:</strong> 7-12 business days</li>
+                                <li><strong>Canada & UK:</strong> 10-15 business days</li>
+                                <li><strong>Europe:</strong> 12-18 business days</li>
+                                <li><strong>Australia:</strong> 12-20 business days</li>
+                                <li><strong>Rest of World:</strong> 15-25 business days</li>
+                            </ul>
+                            <p>Please note that these are estimates and actual delivery times may vary due to customs processing.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Do you offer free shipping?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We offer FREE shipping on all orders over $50. For orders under $50, a flat shipping rate of $4.99 applies.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            How can I track my order?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once your order ships (usually within 1-2 business days), you'll receive an email with your tracking number and a link to track your package. You can also contact our support team with your order number for tracking updates.</p>
+                        </div>
+                    </div>
+
+                    <!-- Orders FAQs -->
+                    <h3 style="margin: 2rem 0 1.5rem; color: var(--primary);">Orders & Payments</h3>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            What payment methods do you accept?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept the following payment methods:</p>
+                            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                                <li>PayPal (recommended)</li>
+                                <li>Visa</li>
+                                <li>Mastercard</li>
+                                <li>American Express</li>
+                                <li>Apple Pay</li>
+                                <li>Google Pay</li>
+                            </ul>
+                            <p>All payments are processed securely with SSL encryption.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Can I modify or cancel my order?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We process orders quickly! If you need to modify or cancel your order, please contact us immediately at support@sellbuddy.com with "URGENT" in the subject line.</p>
+                            <p>Cancellation requests made within 2 hours of ordering are usually successful. Once an order has shipped, it cannot be cancelled but can be returned for a full refund.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Is my payment information secure?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! We use industry-standard SSL encryption to protect your data. We never store your credit card information on our servers. All payments are processed through secure payment gateways (PayPal/Stripe).</p>
+                        </div>
+                    </div>
+
+                    <!-- Returns FAQs -->
+                    <h3 style="margin: 2rem 0 1.5rem; color: var(--primary);">Returns & Refunds</h3>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            What is your return policy?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer a 30-day money-back guarantee on all products. If you're not satisfied for any reason, simply contact us within 30 days of receiving your order.</p>
+                            <p>For defective or damaged items, we'll provide a full refund including shipping costs. For change-of-mind returns, customers are responsible for return shipping.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            How do I request a refund?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>To request a refund:</p>
+                            <ol style="margin: 1rem 0; padding-left: 1.5rem;">
+                                <li>Email support@sellbuddy.com with your order number</li>
+                                <li>Include reason for return and photos if the item is damaged</li>
+                                <li>We'll respond within 24 hours with return instructions</li>
+                                <li>Refunds are processed within 48 hours of approval</li>
+                            </ol>
+                            <p>Refunds typically appear in your account within 5-10 business days.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            What if my item arrives damaged?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We're sorry if your item arrived damaged! Please contact us within 7 days of receiving your order with:</p>
+                            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                                <li>Your order number</li>
+                                <li>Photos of the damaged item</li>
+                                <li>Photos of the packaging</li>
+                            </ul>
+                            <p>We'll arrange a free replacement or full refund immediately.</p>
+                        </div>
+                    </div>
+
+                    <!-- Products FAQs -->
+                    <h3 style="margin: 2rem 0 1.5rem; color: var(--primary);">Products & Quality</h3>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Are your products authentic/good quality?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! Every product in our store is:</p>
+                            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                                <li>Carefully sourced from vetted suppliers</li>
+                                <li>Quality-tested before being listed</li>
+                                <li>Backed by our 30-day satisfaction guarantee</li>
+                            </ul>
+                            <p>We don't sell branded items or counterfeits. All products are generic or our own SellBuddy brand. If you're ever unsatisfied with quality, we'll make it right with a full refund.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            Do you have a discount code?
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! Use code <strong>WELCOME10</strong> for 10% off your first order. Sign up for our newsletter to receive exclusive deals and flash sale notifications.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Still have questions -->
+                <div style="text-align: center; margin-top: 3rem; padding: 3rem; background: var(--light); border-radius: 16px;">
+                    <h3>Still have questions?</h3>
+                    <p style="color: var(--gray); margin: 1rem 0 1.5rem;">Our support team is here to help!</p>
+                    <a href="contact.html" class="btn btn-accent">Contact Support</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SellBuddy</h4>
+                <p>Your trusted source for quality products at great prices.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <a href="index.html#products">All Products</a>
+                <a href="index.html#products">Best Sellers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="contact.html">Contact Us</a>
+                <a href="faq.html">FAQ</a>
+                <a href="shipping.html">Shipping Info</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="returns.html">Refund Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SellBuddy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="ST_MTZmZWVmZjUtNWVhNi00YjcyLWEwMTgtNGNhZDJiOWVkY2EzNjM5MDEwMDMxNTgwNDcxMTE0" data-config-modal-style="side"></div>
+    <script src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
+    <script src="chat_widget.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mainNav').classList.toggle('active');
+        }
+
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

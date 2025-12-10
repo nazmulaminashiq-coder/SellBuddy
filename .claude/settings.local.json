@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git add:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd complete professional e-commerce website\n\nNew pages added:\n- Enhanced homepage with testimonials, stats, trust badges\n- About Us page with company story and values\n- Contact page with form and support info\n- FAQ page with accordion-style questions\n- Shipping Policy page with delivery times\n- Return Policy page with 30-day guarantee\n- Privacy Policy page\n- Terms of Service page\n\nFeatures:\n- Shared responsive CSS stylesheet (styles.css)\n- Mobile-friendly navigation\n- Consistent branding across all pages\n- Snipcart cart integration on all pages\n- Chat widget on all pages\n- SEO meta tags and Open Graph support\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
