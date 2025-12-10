@@ -1,0 +1,19 @@
+{
+    "orders": [],
+    "stats": {
+        "totalOrders": 0,
+        "totalRevenue": 0,
+        "totalProfit": 0,
+        "averageOrderValue": 0,
+        "conversionRate": 0
+    },
+    "statusCounts": {
+        "pending": 0,
+        "processing": 0,
+        "shipped": 0,
+        "delivered": 0,
+        "cancelled": 0,
+        "refunded": 0
+    },
+    "lastUpdated": "2025-12-10"
+}

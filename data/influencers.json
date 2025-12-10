@@ -1,0 +1,32 @@
+{
+    "influencers": [],
+    "campaigns": [],
+    "outreachTemplates": [
+        {
+            "id": "product-review",
+            "name": "Product Review Request",
+            "subject": "Collaboration Opportunity - Free Product for Review",
+            "body": "Hi {name}!\n\nLove your content on {platform}! Your {niche} posts really resonate with your audience.\n\nI'm reaching out from SellBuddy - we sell {product_category} products that I think would be perfect for your followers.\n\nWould you be interested in receiving a free {product_name} in exchange for an honest review? No strings attached - just share your genuine thoughts!\n\nLet me know if you're interested and I'll ship it out right away.\n\nBest,\n{sender_name}\nSellBuddy Team"
+        },
+        {
+            "id": "affiliate",
+            "name": "Affiliate Partnership",
+            "subject": "Partner with SellBuddy - Earn Commission!",
+            "body": "Hey {name}!\n\nI've been following your {platform} account and I'm impressed by your engagement rates.\n\nWe'd love to offer you an exclusive affiliate partnership with SellBuddy:\n- 15% commission on every sale\n- Custom discount code for your followers\n- Free products to showcase\n- Priority support\n\nInterested in learning more? Just reply and I'll send over the details!\n\nCheers,\n{sender_name}"
+        },
+        {
+            "id": "ugc",
+            "name": "UGC Creator Request",
+            "subject": "Paid UGC Opportunity",
+            "body": "Hi {name}!\n\nWe're looking for talented content creators like you to createu free products\n- You create 2-3 short videos (TikTok/Reels style)\n- We pay ${payment_amount} per video\n- You keep the products!\n\nYour conte UGC for our brand.\n\nThe deal:\n- We send yont style is exactly what we're looking for. Would you be interested?\n\nBest,\n{sender_name}\nSellBuddy"
+        }
+    ],
+    "stats": {
+        "totalOutreach": 0,
+        "responseRate": 0,
+        "acceptanceRate": 0,
+        "activeCampaigns": 0,
+        "totalSalesFromInfluencers": 0
+    },
+    "lastUpdated": "2025-12-10"
+}

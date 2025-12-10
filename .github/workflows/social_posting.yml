@@ -1,0 +1,62 @@
+name: Generate Social Content
+
+on:
+  schedule:
+    # Runs every day at 6:00 AM UTC (before posting time)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  social:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate Social Media Content
+        run: python bots/social_media_bot.py
+
+      - name: Generate Influencer Outreach
+        run: python bots/influencer_bot.py
+
+      - name: Save generated content
+        run: |
+          mkdir -p content
+          python -c "
+          from bots.social_media_bot import generate_weekly_schedule, generate_caption
+          import json
+          from datetime import datetime
+
+          schedule = generate_weekly_schedule()
+          caption = generate_caption('Galaxy Star Projector', 'smart_home')
+
+          output = {
+              'generated': datetime.now().isoformat(),
+              'weekly_schedule': schedule,
+              'sample_caption': caption
+          }
+
+          with open('content/daily_content.json', 'w') as f:
+              json.dump(output, f, indent=2)
+          "
+
+      - name: Commit content
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add content/
+          git diff --staged --quiet || git commit -m "Generate daily social content"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,12 @@
+# SellBuddy Dropshipping Automation
+# Python dependencies for bots
+
+# No external dependencies required for basic functionality
+# The bots use only Python standard library
+
+# Optional: Uncomment below if you want to extend functionality
+# requests>=2.31.0        # For API calls
+# beautifulsoup4>=4.12.0  # For web scraping
+# pandas>=2.0.0           # For data analysis
+# schedule>=1.2.0         # For local task scheduling
+# python-dotenv>=1.0.0    # For environment variables
