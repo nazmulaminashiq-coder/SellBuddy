@@ -1,0 +1,21 @@
+# SellBuddy Robots.txt
+# https://nazmulaminashiq-coder.github.io/SellBuddy/store/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://nazmulaminashiq-coder.github.io/SellBuddy/store/sitemap.xml
+
+# Disallow admin and backend paths
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /data/
+Disallow: /*.json$
+
+# Allow search engines to index all store pages
+Allow: /store/
+Allow: /store/*.html
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1

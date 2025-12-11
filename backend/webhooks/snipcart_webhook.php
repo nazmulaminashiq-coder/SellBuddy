@@ -10,16 +10,32 @@ declare(strict_types=1);
 
 // Configuration
 define('SNIPCART_SECRET_KEY', getenv('SNIPCART_SECRET_KEY') ?: '');
+define('SNIPCART_API_KEY', getenv('SNIPCART_API_KEY') ?: '');
 define('GOOGLE_SHEETS_WEBHOOK', getenv('GOOGLE_SHEETS_WEBHOOK') ?: '');
 define('OWNER_EMAIL', getenv('OWNER_EMAIL') ?: 'nazmulaminashiq.coder@gmail.com');
 define('STORE_NAME', 'SellBuddy');
 define('LOG_FILE', __DIR__ . '/../../data/logs/webhook_' . date('Y-m-d') . '.log');
+define('RATE_LIMIT_FILE', __DIR__ . '/../../data/logs/rate_limit.json');
+define('MAX_REQUESTS_PER_MINUTE', 30);
 
-// Allow CORS for Snipcart
-header('Access-Control-Allow-Origin: *');
+// Security headers
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('X-XSS-Protection: 1; mode=block');
+header('Content-Type: application/json');
+
+// Allow CORS only for Snipcart domains
+$allowedOrigins = [
+    'https://app.snipcart.com',
+    'https://cdn.snipcart.com',
+    'https://payment.snipcart.com'
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, X-Snipcart-RequestToken');
-header('Content-Type: application/json');
 
 // Handle preflight
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -31,6 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['error' => 'Method not allowed']);
+    exit;
+}
+
+// Rate limiting
+if (!checkRateLimit($_SERVER['REMOTE_ADDR'] ?? 'unknown')) {
+    logMessage('SECURITY', 'Rate limit exceeded for IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
+    http_response_code(429);
+    echo json_encode(['error' => 'Too many requests']);
     exit;
 }
 
@@ -48,8 +72,19 @@ if (!$data) {
 // Log incoming webhook
 logMessage('INFO', 'Received webhook: ' . ($data['eventName'] ?? 'unknown'));
 
-// Verify webhook (in production, verify with Snipcart API)
-// For now, we'll process all webhooks
+// Verify webhook with Snipcart API
+$requestToken = $_SERVER['HTTP_X_SNIPCART_REQUESTTOKEN'] ?? '';
+if (!empty(SNIPCART_API_KEY) && !empty($requestToken)) {
+    if (!verifySnipcartWebhook($requestToken)) {
+        logMessage('SECURITY', 'Invalid webhook signature - rejected');
+        http_response_code(401);
+        echo json_encode(['error' => 'Invalid webhook signature']);
+        exit;
+    }
+    logMessage('INFO', 'Webhook signature verified');
+} elseif (!empty(SNIPCART_API_KEY)) {
+    logMessage('WARN', 'Missing request token in webhook - processing anyway in test mode');
+}
 
 // Handle different event types
 $eventName = $data['eventName'] ?? '';
@@ -545,4 +580,90 @@ function logMessage(string $level, string $message): void {
     $logLine = "[$timestamp] [$level] $message\n";
 
     file_put_contents(LOG_FILE, $logLine, FILE_APPEND);
+}
+
+/**
+ * Verify Snipcart webhook signature
+ * https://docs.snipcart.com/v3/webhooks/introduction#validating-webhooks
+ */
+function verifySnipcartWebhook(string $requestToken): bool {
+    if (empty(SNIPCART_API_KEY)) {
+        return true; // Skip verification if no API key configured
+    }
+
+    // Verify with Snipcart API
+    $ch = curl_init('https://app.snipcart.com/api/requestvalidation/' . $requestToken);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Basic ' . base64_encode(SNIPCART_API_KEY . ':'),
+            'Accept: application/json'
+        ],
+        CURLOPT_TIMEOUT => 10
+    ]);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($httpCode !== 200) {
+        logMessage('SECURITY', "Webhook validation failed with HTTP $httpCode");
+        return false;
+    }
+
+    $result = json_decode($response, true);
+    return ($result['token'] ?? '') === $requestToken;
+}
+
+/**
+ * Rate limiting to prevent abuse
+ */
+function checkRateLimit(string $ip): bool {
+    $rateFile = RATE_LIMIT_FILE;
+    $rateDir = dirname($rateFile);
+
+    if (!is_dir($rateDir)) {
+        mkdir($rateDir, 0755, true);
+    }
+
+    $rateData = [];
+    if (file_exists($rateFile)) {
+        $rateData = json_decode(file_get_contents($rateFile), true) ?: [];
+    }
+
+    $now = time();
+    $minute = floor($now / 60);
+
+    // Clean old entries (older than 5 minutes)
+    foreach ($rateData as $key => $data) {
+        if ($data['minute'] < $minute - 5) {
+            unset($rateData[$key]);
+        }
+    }
+
+    $key = md5($ip);
+    if (!isset($rateData[$key]) || $rateData[$key]['minute'] !== $minute) {
+        $rateData[$key] = ['minute' => $minute, 'count' => 0];
+    }
+
+    $rateData[$key]['count']++;
+
+    file_put_contents($rateFile, json_encode($rateData));
+
+    return $rateData[$key]['count'] <= MAX_REQUESTS_PER_MINUTE;
+}
+
+/**
+ * Sanitize string input
+ */
+function sanitizeInput(string $input): string {
+    return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+}
+
+/**
+ * Validate email address
+ */
+function validateEmail(string $email): ?string {
+    $email = filter_var(trim($email), FILTER_VALIDATE_EMAIL);
+    return $email !== false ? $email : null;
 }
