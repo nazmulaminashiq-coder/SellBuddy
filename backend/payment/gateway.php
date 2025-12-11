@@ -6,14 +6,35 @@
  * Documentation: https://docs.snipcart.com/v3/custom-payment-gateway
  */
 
+// Security headers
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('X-XSS-Protection: 1; mode=block');
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+
+// Allow CORS only for Snipcart domains
+$allowedOrigins = [
+    'https://app.snipcart.com',
+    'https://cdn.snipcart.com',
+    'https://payment.snipcart.com'
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
 // Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
+    exit;
+}
+
+// Rate limiting
+if (!checkRateLimit($_SERVER['REMOTE_ADDR'] ?? 'unknown')) {
+    http_response_code(429);
+    echo json_encode(['error' => 'Too many requests. Please try again later.']);
     exit;
 }
 
@@ -283,4 +304,56 @@ function getBaseUrl(): string
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $path = dirname($_SERVER['SCRIPT_NAME']);
     return $protocol . '://' . $host . $path;
+}
+
+/**
+ * Rate limiting to prevent abuse
+ */
+function checkRateLimit(string $ip): bool
+{
+    $rateFile = __DIR__ . '/../data/logs/payment_rate_limit.json';
+    $rateDir = dirname($rateFile);
+    $maxRequests = 20; // Per minute
+
+    if (!is_dir($rateDir)) {
+        @mkdir($rateDir, 0755, true);
+    }
+
+    $rateData = [];
+    if (file_exists($rateFile)) {
+        $rateData = json_decode(file_get_contents($rateFile), true) ?: [];
+    }
+
+    $now = time();
+    $minute = floor($now / 60);
+
+    // Clean old entries
+    foreach ($rateData as $key => $data) {
+        if (($data['minute'] ?? 0) < $minute - 5) {
+            unset($rateData[$key]);
+        }
+    }
+
+    $key = md5($ip);
+    if (!isset($rateData[$key]) || ($rateData[$key]['minute'] ?? 0) !== $minute) {
+        $rateData[$key] = ['minute' => $minute, 'count' => 0];
+    }
+
+    $rateData[$key]['count']++;
+    @file_put_contents($rateFile, json_encode($rateData));
+
+    return $rateData[$key]['count'] <= $maxRequests;
+}
+
+/**
+ * Validate and sanitize input
+ */
+function sanitizePaymentData(array $data): array
+{
+    return [
+        'paymentSessionId' => htmlspecialchars($data['paymentSessionId'] ?? '', ENT_QUOTES, 'UTF-8'),
+        'method' => preg_replace('/[^a-z_]/', '', strtolower($data['method'] ?? 'manual')),
+        'amount' => abs((float) ($data['amount'] ?? 0)),
+        'transactionId' => preg_replace('/[^a-zA-Z0-9\-_]/', '', $data['transactionId'] ?? ''),
+    ];
 }

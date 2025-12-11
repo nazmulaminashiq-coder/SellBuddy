@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - SellBuddy</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f5f5f5;">
+        <tr>
+            <td style="padding: 40px 20px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #6366f1, #4f46e5); padding: 40px; text-align: center;">
+                            <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">Thank You for Your Order!</h1>
+                            <p style="margin: 10px 0 0; color: rgba(255,255,255,0.9); font-size: 16px;">Your order has been confirmed</p>
+                        </td>
+                    </tr>
+
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px;">
+                            <p style="margin: 0 0 20px; color: #333; font-size: 16px; line-height: 1.6;">
+                                Hi {{customer_name}},
+                            </p>
+                            <p style="margin: 0 0 30px; color: #666; font-size: 15px; line-height: 1.7;">
+                                Great news! We've received your order and it's being prepared for shipment.
+                                You'll receive another email with tracking information once your order ships.
+                            </p>
+
+                            <!-- Order Info Box -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 8px; margin-bottom: 30px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <h3 style="margin: 0 0 15px; color: #333; font-size: 16px;">Order #{{order_id}}</h3>
+                                        <p style="margin: 0; color: #666; font-size: 14px;">
+                                            <strong>Date:</strong> {{order_date}}<br>
+                                            <strong>Payment:</strong> {{payment_method}}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Order Items -->
+                            <h3 style="margin: 0 0 20px; color: #333; font-size: 18px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">Order Details</h3>
+
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 30px;">
+                                {{order_items}}
+                            </table>
+
+                            <!-- Order Totals -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-top: 1px solid #e5e7eb; padding-top: 20px;">
+                                <tr>
+                                    <td style="padding: 8px 0; color: #666; font-size: 14px;">Subtotal</td>
+                                    <td style="padding: 8px 0; color: #333; font-size: 14px; text-align: right;">${{subtotal}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px 0; color: #666; font-size: 14px;">Shipping</td>
+                                    <td style="padding: 8px 0; color: #333; font-size: 14px; text-align: right;">${{shipping}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px 0; color: #666; font-size: 14px;">Tax</td>
+                                    <td style="padding: 8px 0; color: #333; font-size: 14px; text-align: right;">${{tax}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 15px 0 0; color: #333; font-size: 18px; font-weight: 700;">Total</td>
+                                    <td style="padding: 15px 0 0; color: #6366f1; font-size: 18px; font-weight: 700; text-align: right;">${{total}} {{currency}}</td>
+                                </tr>
+                            </table>
+
+                            <!-- Shipping Address -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 8px; margin: 30px 0;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <h3 style="margin: 0 0 15px; color: #333; font-size: 16px;">Shipping Address</h3>
+                                        <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.6;">
+                                            {{shipping_address}}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- What's Next -->
+                            <h3 style="margin: 30px 0 15px; color: #333; font-size: 16px;">What's Next?</h3>
+                            <ul style="margin: 0; padding: 0 0 0 20px; color: #666; font-size: 14px; line-height: 2;">
+                                <li>Your order is being prepared for shipment</li>
+                                <li>You'll receive tracking info within 1-2 business days</li>
+                                <li>Estimated delivery: 7-15 business days</li>
+                            </ul>
+
+                            <!-- CTA Button -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 30px 0;">
+                                <tr>
+                                    <td style="border-radius: 8px; background-color: #6366f1;">
+                                        <a href="https://nazmulaminashiq-coder.github.io/SellBuddy/store/track-order.html?id={{order_id}}" style="display: inline-block; padding: 15px 30px; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 14px;">Track Your Order</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p style="margin: 30px 0 0; color: #666; font-size: 14px; line-height: 1.6;">
+                                Questions about your order? Reply to this email or visit our
+                                <a href="https://nazmulaminashiq-coder.github.io/SellBuddy/store/faq.html" style="color: #6366f1; text-decoration: none;">FAQ</a>.
+                            </p>
+
+                            <p style="margin: 20px 0 0; color: #333; font-size: 14px;">
+                                Thanks for shopping with us!<br>
+                                <strong>The SellBuddy Team</strong>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #1e293b; padding: 30px; text-align: center;">
+                            <p style="margin: 0 0 15px; color: #ffffff; font-size: 18px; font-weight: 600;">SellBuddy</p>
+                            <p style="margin: 0 0 20px; color: #94a3b8; font-size: 13px;">
+                                Quality products at great prices
+                            </p>
+                            <p style="margin: 0; color: #64748b; font-size: 12px;">
+                                &copy; 2025 SellBuddy. All rights reserved.<br>
+                                <a href="https://nazmulaminashiq-coder.github.io/SellBuddy/store/privacy.html" style="color: #64748b;">Privacy Policy</a> |
+                                <a href="https://nazmulaminashiq-coder.github.io/SellBuddy/store/terms.html" style="color: #64748b;">Terms of Service</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

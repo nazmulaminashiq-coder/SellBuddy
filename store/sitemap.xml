@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Product Pages -->
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/product.html?id=galaxy-star-projector-pro</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600</image:loc>
+            <image:title>Galaxy Star Projector Pro</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/product.html?id=posture-corrector-pro</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/product.html?id=led-strip-lights-smart</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/product.html?id=portable-blender-usb</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/product.html?id=no-pull-dog-harness</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/product.html?id=photo-projection-necklace</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/product.html?id=sunset-projection-lamp</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/product.html?id=ice-roller-face</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Static Pages -->
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/about.html</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/contact.html</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/faq.html</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/shipping.html</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/returns.html</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/privacy.html</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/terms.html</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://nazmulaminashiq-coder.github.io/SellBuddy/store/track-order.html</loc>
+        <lastmod>2025-12-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+</urlset>

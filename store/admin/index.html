@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SellBuddy</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--dark);
+            color: var(--white);
+            padding: 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .sidebar-logo span {
+            color: var(--secondary);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        .sidebar-nav svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 2rem;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 1.75rem;
+            color: var(--dark);
+        }
+
+        .page-header .btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card-title {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .stat-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card-icon.blue { background: #dbeafe; color: #2563eb; }
+        .stat-card-icon.green { background: #d1fae5; color: #059669; }
+        .stat-card-icon.yellow { background: #fef3c7; color: #d97706; }
+        .stat-card-icon.purple { background: #ede9fe; color: #7c3aed; }
+
+        .stat-card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .stat-card-change {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .stat-card-change.positive { color: var(--secondary); }
+        .stat-card-change.negative { color: var(--danger); }
+
+        /* Tables */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: var(--dark);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success { background: #d1fae5; color: #065f46; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-info { background: #dbeafe; color: #1e40af; }
+        .badge-danger { background: #fee2e2; color: #991b1b; }
+
+        /* Charts placeholder */
+        .chart-placeholder {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+            border-radius: 8px;
+            color: var(--gray);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--white);
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .action-btn svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+
+        /* Login Screen */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-box h1 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-box p {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen (shown by default) -->
+        <div class="login-container" id="loginScreen">
+            <div class="login-box">
+                <h1>Sell<span style="color: var(--secondary);">Buddy</span></h1>
+                <p>Admin Dashboard</p>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Sign In</button>
+                </form>
+                <p style="margin-top: 1.5rem; font-size: 0.85rem;">
+                    Demo: admin / admin123
+                </p>
+            </div>
+        </div>
+
+        <!-- Dashboard (hidden by default) -->
+        <div class="admin-container" id="dashboard" style="display: none;">
+            <aside class="sidebar">
+                <div class="sidebar-logo">Sell<span>Buddy</span></div>
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="#" class="active" onclick="showSection('overview')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="9"></rect>
+                                <rect x="14" y="3" width="7" height="5"></rect>
+                                <rect x="14" y="12" width="7" height="9"></rect>
+                                <rect x="3" y="16" width="7" height="5"></rect>
+                            </svg>
+                            Overview
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('orders')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('products')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            </svg>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('customers')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            Customers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('analytics')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            Analytics
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('messages')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            Messages
+                        </a>
+                    </li>
+                    <li style="margin-top: 2rem;">
+                        <a href="../index.html">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                                <polyline points="10 17 15 12 10 7"></polyline>
+                                <line x1="15" y1="12" x2="3" y2="12"></line>
+                            </svg>
+                            View Store
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="handleLogout()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <main class="main-content">
+                <!-- Overview Section -->
+                <section id="section-overview">
+                    <div class="page-header">
+                        <h1>Dashboard Overview</h1>
+                        <span style="color: var(--gray);" id="currentDate"></span>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <span class="stat-card-title">Total Revenue</span>
+                                <div class="stat-card-icon green">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-card-value" id="statRevenue">$0.00</div>
+                            <div class="stat-card-change positive">Ready to earn</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <span class="stat-card-title">Total Orders</span>
+                                <div class="stat-card-icon blue">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-card-value" id="statOrders">0</div>
+                            <div class="stat-card-change">Awaiting first order</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <span class="stat-card-title">Newsletter Subscribers</span>
+                                <div class="stat-card-icon purple">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-card-value" id="statSubscribers">0</div>
+                            <div class="stat-card-change">Growing your list</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <span class="stat-card-title">Contact Messages</span>
+                                <div class="stat-card-icon yellow">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="stat-card-value" id="statMessages">0</div>
+                            <div class="stat-card-change">No new messages</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Quick Actions</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="quick-actions">
+                                <a href="../index.html#products" class="action-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                                    </svg>
+                                    <span>Add New Product</span>
+                                </a>
+                                <a href="#" class="action-btn" onclick="showSection('orders')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                    </svg>
+                                    <span>View All Orders</span>
+                                </a>
+                                <a href="#" class="action-btn" onclick="runBots()">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    <span>Run Automation</span>
+                                </a>
+                                <a href="#" class="action-btn" onclick="showSection('analytics')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                                    </svg>
+                                    <span>View Analytics</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Recent Orders</h2>
+                            <a href="#" onclick="showSection('orders')" style="color: var(--primary); text-decoration: none;">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Product</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentOrdersTable">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center; color: var(--gray);">
+                                            No orders yet. Your first order will appear here!
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Orders Section -->
+                <section id="section-orders" style="display: none;">
+                    <div class="page-header">
+                        <h1>Orders</h1>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Customer</th>
+                                        <th>Products</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTable">
+                                    <tr>
+                                        <td colspan="7" style="text-align: center; color: var(--gray);">
+                                            No orders yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Other sections... -->
+                <section id="section-products" style="display: none;">
+                    <div class="page-header">
+                        <h1>Products</h1>
+                        <a href="../index.html#products" class="btn">View Store</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p style="text-align: center; color: var(--gray);">
+                                Products are managed in the store files. Edit <code>store/products.js</code> to update products.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-customers" style="display: none;">
+                    <div class="page-header">
+                        <h1>Customers</h1>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p style="text-align: center; color: var(--gray);">
+                                Customer data will appear here after orders are placed.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-analytics" style="display: none;">
+                    <div class="page-header">
+                        <h1>Analytics</h1>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Sales Overview</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-placeholder">
+                                Chart will appear here once you have sales data
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="section-messages" style="display: none;">
+                    <div class="page-header">
+                        <h1>Messages</h1>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Subject</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="messagesTable">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; color: var(--gray);">
+                                            No messages yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Admin credentials (in production, use proper authentication)
+        const ADMIN_USER = 'admin';
+        const ADMIN_PASS = 'admin123';
+
+        // Check if already logged in
+        if (localStorage.getItem('admin_logged_in') === 'true') {
+            showDashboard();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === ADMIN_USER && password === ADMIN_PASS) {
+                localStorage.setItem('admin_logged_in', 'true');
+                showDashboard();
+            } else {
+                alert('Invalid credentials');
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('admin_logged_in');
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+
+        function showDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'flex';
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            loadDashboardData();
+        }
+
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('[id^="section-"]').forEach(el => el.style.display = 'none');
+            // Show selected section
+            document.getElementById(`section-${section}`).style.display = 'block';
+            // Update nav
+            document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+            event.target.closest('a').classList.add('active');
+        }
+
+        function loadDashboardData() {
+            // Load orders
+            fetch('../data/orders.json')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.stats) {
+                        document.getElementById('statRevenue').textContent = '$' + (data.stats.revenue || 0).toFixed(2);
+                        document.getElementById('statOrders').textContent = data.stats.orders_count || 0;
+                    }
+                    if (data.orders && data.orders.length > 0) {
+                        renderOrders(data.orders);
+                    }
+                })
+                .catch(() => console.log('No orders data yet'));
+
+            // Load newsletter subscribers
+            fetch('../data/newsletter_subscribers.json')
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('statSubscribers').textContent = data.total_count || 0;
+                })
+                .catch(() => console.log('No newsletter data yet'));
+
+            // Load contact messages
+            fetch('../data/contact_submissions.json')
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('statMessages').textContent = data.total_count || 0;
+                    if (data.submissions && data.submissions.length > 0) {
+                        renderMessages(data.submissions);
+                    }
+                })
+                .catch(() => console.log('No messages yet'));
+        }
+
+        function renderOrders(orders) {
+            const recent = orders.slice(-5).reverse();
+            const html = recent.map(order => `
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.customer}</td>
+                    <td>${order.product}</td>
+                    <td>$${order.total.toFixed(2)}</td>
+                    <td><span class="badge badge-${getStatusClass(order.status)}">${order.status}</span></td>
+                </tr>
+            `).join('');
+            document.getElementById('recentOrdersTable').innerHTML = html;
+        }
+
+        function renderMessages(messages) {
+            const html = messages.slice(-10).reverse().map(msg => `
+                <tr>
+                    <td>${msg.id}</td>
+                    <td>${msg.submitted_at}</td>
+                    <td>${msg.name}</td>
+                    <td>${msg.email}</td>
+                    <td>${msg.subject}</td>
+                    <td><span class="badge badge-${msg.status === 'new' ? 'warning' : 'success'}">${msg.status}</span></td>
+                </tr>
+            `).join('');
+            document.getElementById('messagesTable').innerHTML = html;
+        }
+
+        function getStatusClass(status) {
+            const classes = {
+                'confirmed': 'info',
+                'processing': 'warning',
+                'shipped': 'success',
+                'delivered': 'success',
+                'cancelled': 'danger'
+            };
+            return classes[status] || 'info';
+        }
+
+        function runBots() {
+            alert('Automation would run here. In production, this triggers the autonomous_controller.py via GitHub Actions or Google Colab.');
+        }
+    </script>
+</body>
+</html>
