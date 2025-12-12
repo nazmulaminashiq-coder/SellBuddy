@@ -1,0 +1,149 @@
+{
+  "generated": "2025-12-12T08:16:21.115068",
+  "calendar": [
+    {
+      "date": "Friday, December 12",
+      "day_num": 1,
+      "platform": "TikTok",
+      "content_type": "TikTok Video",
+      "posting_time": "7:00 PM",
+      "product": "Galaxy Star Projector",
+      "product_id": "galaxy-projector",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Saturday, December 13",
+      "day_num": 2,
+      "platform": "Instagram",
+      "content_type": "Instagram Reel",
+      "posting_time": "8:00 PM",
+      "product": "LED Strip Lights",
+      "product_id": "led-lights",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Sunday, December 14",
+      "day_num": 3,
+      "platform": "TikTok",
+      "content_type": "TikTok Video",
+      "posting_time": "12:00 PM",
+      "product": "Posture Corrector",
+      "product_id": "posture-corrector",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Monday, December 15",
+      "day_num": 4,
+      "platform": "Twitter/X",
+      "content_type": "Twitter Thread",
+      "posting_time": "10:00 AM",
+      "product": "Portable Blender",
+      "product_id": "portable-blender",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Tuesday, December 16",
+      "day_num": 5,
+      "platform": "Instagram",
+      "content_type": "Instagram Story",
+      "posting_time": "9:00 PM",
+      "product": "Galaxy Star Projector",
+      "product_id": "galaxy-projector",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Wednesday, December 17",
+      "day_num": 6,
+      "platform": "TikTok",
+      "content_type": "TikTok Video",
+      "posting_time": "6:00 PM",
+      "product": "LED Strip Lights",
+      "product_id": "led-lights",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Thursday, December 18",
+      "day_num": 7,
+      "platform": "Reddit",
+      "content_type": "Reddit Post",
+      "posting_time": "11:00 AM",
+      "product": "Posture Corrector",
+      "product_id": "posture-corrector",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Friday, December 19",
+      "day_num": 8,
+      "platform": "TikTok",
+      "content_type": "TikTok Video",
+      "posting_time": "7:00 PM",
+      "product": "Portable Blender",
+      "product_id": "portable-blender",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Saturday, December 20",
+      "day_num": 9,
+      "platform": "Instagram",
+      "content_type": "Instagram Reel",
+      "posting_time": "8:00 PM",
+      "product": "Galaxy Star Projector",
+      "product_id": "galaxy-projector",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Sunday, December 21",
+      "day_num": 10,
+      "platform": "TikTok",
+      "content_type": "TikTok Video",
+      "posting_time": "12:00 PM",
+      "product": "LED Strip Lights",
+      "product_id": "led-lights",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Monday, December 22",
+      "day_num": 11,
+      "platform": "Twitter/X",
+      "content_type": "Twitter Thread",
+      "posting_time": "10:00 AM",
+      "product": "Posture Corrector",
+      "product_id": "posture-corrector",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Tuesday, December 23",
+      "day_num": 12,
+      "platform": "Instagram",
+      "content_type": "Instagram Story",
+      "posting_time": "9:00 PM",
+      "product": "Portable Blender",
+      "product_id": "portable-blender",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Wednesday, December 24",
+      "day_num": 13,
+      "platform": "TikTok",
+      "content_type": "TikTok Video",
+      "posting_time": "6:00 PM",
+      "product": "Galaxy Star Projector",
+      "product_id": "galaxy-projector",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Thursday, December 25",
+      "day_num": 14,
+      "platform": "Reddit",
+      "content_type": "Reddit Post",
+      "posting_time": "11:00 AM",
+      "product": "LED Strip Lights",
+      "product_id": "led-lights",
+      "status": "Scheduled"
+    }
+  ],
+  "products": [
+    "galaxy-projector",
+    "led-lights"
+  ]
+}
