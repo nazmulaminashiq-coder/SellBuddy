@@ -1,0 +1,35 @@
+[
+  {
+    "type": "twitter",
+    "product": "No-Pull Dog Harness",
+    "content": {
+      "tweet": "The No-Pull Dog Harness hype is REAL. Trust me on this one.\n\n\ud83d\udd17 in bio",
+      "thread_potential": false,
+      "best_time": "10:00 AM or 14:00 PM"
+    },
+    "generated_at": "2025-12-13T08:13:32.780275",
+    "scheduled_for": "2025-12-14T01:13:32.780278"
+  },
+  {
+    "type": "twitter",
+    "product": "Sunset Projection Lamp",
+    "content": {
+      "tweet": "Things I didn't know I needed:\n1. This Sunset Projection Lamp\n2. That's it. That's the list.\n\nLink in bio",
+      "thread_potential": true,
+      "best_time": "10:00 AM or 14:00 PM"
+    },
+    "generated_at": "2025-12-13T08:13:32.780290",
+    "scheduled_for": "2025-12-13T20:13:32.780291"
+  },
+  {
+    "type": "twitter",
+    "product": "Sunset Projection Lamp",
+    "content": {
+      "tweet": "The Sunset Projection Lamp hype is REAL. Trust me on this one.\n\n\ud83d\udd17 in bio",
+      "thread_potential": false,
+      "best_time": "10:00 AM or 12:00 PM"
+    },
+    "generated_at": "2025-12-13T08:13:32.780302",
+    "scheduled_for": "2025-12-13T14:13:32.780302"
+  }
+]

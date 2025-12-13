@@ -1,0 +1,22 @@
+{
+  "date": "2025-12-13",
+  "generated_at": "2025-12-13T08:13:32.780586",
+  "products": {
+    "total": 9,
+    "avg_price": 28.29,
+    "avg_margin": 66.9
+  },
+  "orders": {
+    "total_orders": 0,
+    "pending": 0,
+    "processing": 0,
+    "shipped": 0,
+    "revenue": 0
+  },
+  "content": {
+    "generated_today": 3
+  },
+  "recommendations": [
+    "Add more products to increase variety"
+  ]
+}
