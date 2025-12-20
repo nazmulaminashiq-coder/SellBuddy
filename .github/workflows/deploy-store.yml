@@ -2,7 +2,11 @@ name: Deploy Store to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
+    paths:
+      - 'store/**'
+      - 'data/**'
+      - '.github/workflows/deploy-store.yml'
   schedule:
     # Redeploy daily at midnight UTC to pick up any data changes
     - cron: '0 0 * * *'
@@ -27,6 +31,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON files..."
+          for file in data/*.json; do
+            if [ -f "$file" ]; then
+              python3 -m json.tool "$file" > /dev/null || echo "Warning: $file may have issues"
+            fi
+          done
+          echo "JSON validation complete"
+
       - name: Build store
         run: |
           # Create output directory
@@ -35,15 +49,44 @@ jobs:
           # Copy store files
           cp -r store/* _site/
 
-          # Copy data for dynamic loading
+          # Create necessary directories
           mkdir -p _site/data
-          cp data/*.json _site/data/
+          mkdir -p _site/js
+          mkdir -p _site/admin
+
+          # Copy data for dynamic loading (only safe JSON files)
+          for file in data/products.json data/products_full.json; do
+            if [ -f "$file" ]; then
+              cp "$file" _site/data/
+            fi
+          done
+
+          # Create empty analytics for frontend (don't expose real data)
+          echo '{"daily":{},"totals":{"orders":0,"revenue":0}}' > _site/data/analytics.json
+
+          # Copy JS files if they exist
+          if [ -d "store/js" ]; then
+            cp -r store/js/* _site/js/
+          fi
+
+          # Copy admin dashboard
+          if [ -d "store/admin" ]; then
+            cp -r store/admin/* _site/admin/
+          fi
 
           # Create .nojekyll to bypass Jekyll processing
           touch _site/.nojekyll
 
+          # Create a simple health check file
+          echo "OK - $(date -u)" > _site/health.txt
+
           echo "Store built successfully!"
+          echo "Contents of _site:"
           ls -la _site/
+          echo "Contents of _site/data:"
+          ls -la _site/data/ || true
+          echo "Contents of _site/js:"
+          ls -la _site/js/ || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -60,3 +103,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Deployment Summary
+        run: |
+          echo "Deployment complete!"
+          echo "Store URL: ${{ steps.deployment.outputs.page_url }}"

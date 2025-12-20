@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error - SellBuddy</title>
+    <meta name="description" content="Something went wrong on our end. Please try again later.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .error-page {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-content {
+            max-width: 500px;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--danger);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .error-title {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        .error-message {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .error-illustration {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">Sell<span>Buddy</span></a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Shop</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="error-page">
+        <div class="error-content">
+            <div class="error-illustration">⚠️</div>
+            <div class="error-code">500</div>
+            <h1 class="error-title">Server Error</h1>
+            <p class="error-message">
+                Something went wrong on our end. Our team has been notified and is working to fix the issue.
+                Please try again in a few minutes.
+            </p>
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-accent">Back to Home</a>
+                <a href="contact.html" class="btn btn-secondary" style="border-color: var(--primary); color: var(--primary);">Contact Support</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+            <p>&copy; 2025 SellBuddy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
