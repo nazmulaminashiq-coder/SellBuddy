@@ -180,8 +180,8 @@
       "name": "Premium Dog Leash",
       "category": "Pet Supplies",
       "description": "Premium quality Premium Dog Leash at an unbeatable price.",
-      "price": 25.49,
-      "originalPrice": 40.78,
+      "price": 24.3,
+      "originalPrice": 38.88,
       "discount": 38,
       "image": "https://source.unsplash.com/600x600/?premium+dog+leash",
       "rating": 4.7,
@@ -253,5 +253,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2025-12-19T08:16:26.736358"
+  "lastUpdated": "2025-12-20T08:13:59.998556"
 }
