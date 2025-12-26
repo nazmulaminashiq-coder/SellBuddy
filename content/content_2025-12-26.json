@@ -1,0 +1,35 @@
+[
+  {
+    "type": "instagram",
+    "product": "Galaxy Star Projector",
+    "content": {
+      "caption": "\u2728 The Galaxy Star Projector you've been seeing everywhere \u2728\n\nFinally got mine and WOW. Link in bio!",
+      "hashtags": "#smarthome #aesthetic #musthaves #shopnow #trending",
+      "best_time": "11:00 PM or 8:00 PM"
+    },
+    "generated_at": "2025-12-26T08:15:12.864117",
+    "scheduled_for": "2025-12-27T01:15:12.864120"
+  },
+  {
+    "type": "twitter",
+    "product": "Portable Blender USB",
+    "content": {
+      "tweet": "Things I didn't know I needed:\n1. This Portable Blender USB\n2. That's it. That's the list.\n\nLink in bio",
+      "thread_potential": false,
+      "best_time": "10:00 AM or 13:00 PM"
+    },
+    "generated_at": "2025-12-26T08:15:12.864135",
+    "scheduled_for": "2025-12-27T00:15:12.864136"
+  },
+  {
+    "type": "twitter",
+    "product": "LED Therapy Mask",
+    "content": {
+      "tweet": "Just got this LED Therapy Mask and I'm obsessed \ud83d\ude2d\n\nLink: [bio]",
+      "thread_potential": true,
+      "best_time": "8:00 AM or 13:00 PM"
+    },
+    "generated_at": "2025-12-26T08:15:12.864148",
+    "scheduled_for": "2025-12-26T18:15:12.864150"
+  }
+]
