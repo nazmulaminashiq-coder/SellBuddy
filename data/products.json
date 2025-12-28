@@ -70,8 +70,8 @@
       "name": "No-Pull Dog Harness",
       "category": "Pet Supplies",
       "description": "Adjustable, breathable mesh harness. Reflective straps for night walks. All sizes.",
-      "price": 24.48,
-      "originalPrice": 39.17,
+      "price": 24.7,
+      "originalPrice": 39.52,
       "cost": 9.0,
       "margin": 64,
       "discount": 44,
@@ -230,5 +230,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2025-12-27T08:13:53.581505"
+  "lastUpdated": "2025-12-28T08:14:47.650391"
 }
