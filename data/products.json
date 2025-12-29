@@ -27,8 +27,8 @@
       "name": "Electric Back Scrubber",
       "category": "Personal Care",
       "description": "Long handle electric body brush. Waterproof, rechargeable, 2 speed settings.",
-      "price": 39.87,
-      "originalPrice": 63.79,
+      "price": 40.88,
+      "originalPrice": 65.41,
       "cost": 18.0,
       "margin": 55,
       "discount": 43,
@@ -70,8 +70,8 @@
       "name": "No-Pull Dog Harness",
       "category": "Pet Supplies",
       "description": "Adjustable, breathable mesh harness. Reflective straps for night walks. All sizes.",
-      "price": 24.7,
-      "originalPrice": 39.52,
+      "price": 26.06,
+      "originalPrice": 41.7,
       "cost": 9.0,
       "margin": 64,
       "discount": 44,
@@ -92,8 +92,8 @@
       "name": "Photo Projection Necklace",
       "category": "Accessories",
       "description": "Custom photo projection pendant. Upload your photo, we'll create your memory.",
-      "price": 32.87,
-      "originalPrice": 52.59,
+      "price": 33.28,
+      "originalPrice": 53.25,
       "cost": 10.0,
       "margin": 67,
       "discount": 45,
@@ -230,5 +230,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2025-12-28T08:14:47.650391"
+  "lastUpdated": "2025-12-29T08:17:54.792443"
 }

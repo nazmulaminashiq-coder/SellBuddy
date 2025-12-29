@@ -1,0 +1,36 @@
+[
+  {
+    "type": "twitter",
+    "product": "Galaxy Star Projector",
+    "content": {
+      "tweet": "Just got this Galaxy Star Projector and I'm obsessed \ud83d\ude2d\n\nLink: [bio]",
+      "thread_potential": false,
+      "best_time": "9:00 AM or 13:00 PM"
+    },
+    "generated_at": "2025-12-29T08:17:54.792796",
+    "scheduled_for": "2025-12-30T06:17:54.792799"
+  },
+  {
+    "type": "instagram",
+    "product": "Posture Corrector Pro",
+    "content": {
+      "caption": "POV: Your life after getting this Posture Corrector Pro \ud83d\ude0d\n\nLink in bio to shop!",
+      "hashtags": "#health&wellness #aesthetic #musthaves #shopnow #trending",
+      "best_time": "11:00 PM or 7:00 PM"
+    },
+    "generated_at": "2025-12-29T08:17:54.792833",
+    "scheduled_for": "2025-12-29T13:17:54.792836"
+  },
+  {
+    "type": "tiktok",
+    "product": "Sunset Projection Lamp",
+    "content": {
+      "hook": "Why didn't anyone tell me about this Sunset Projection Lamp sooner??",
+      "caption": "POV: You finally get the Sunset Projection Lamp everyone's been talking about\n\nLink in bio to get yours!\n\n#fyp #viral #tiktokfinds #amazonfinds #musthaves #trending",
+      "suggested_sound": "trending sound - aesthetic vibes",
+      "best_time": "6:00 PM"
+    },
+    "generated_at": "2025-12-29T08:17:54.792852",
+    "scheduled_for": "2025-12-29T19:17:54.792854"
+  }
+]
