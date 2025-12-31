@@ -203,8 +203,8 @@
       "name": "Advanced Posture Brace",
       "category": "Health & Wellness",
       "description": "Upgrade your life with this amazing Advanced Posture Brace.",
-      "price": 17.99,
-      "originalPrice": 28.78,
+      "price": 18.51,
+      "originalPrice": 29.62,
       "discount": 38,
       "image": "https://source.unsplash.com/600x600/?advanced+posture+brace",
       "rating": 4.8,
@@ -230,5 +230,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2025-12-29T08:17:54.792443"
+  "lastUpdated": "2025-12-31T08:16:34.108112"
 }
