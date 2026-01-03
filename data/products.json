@@ -114,8 +114,8 @@
       "name": "Portable Blender USB",
       "category": "Kitchen",
       "description": "Personal size blender. USB rechargeable, 6 blades, perfect for smoothies on-the-go.",
-      "price": 25.87,
-      "originalPrice": 41.39,
+      "price": 28.4,
+      "originalPrice": 45.44,
       "cost": 8.0,
       "margin": 68,
       "discount": 44,
@@ -136,8 +136,8 @@
       "name": "Posture Corrector Pro",
       "category": "Health & Wellness",
       "description": "Adjustable back brace for better posture. Breathable, invisible under clothes.",
-      "price": 19.99,
-      "originalPrice": 39.99,
+      "price": 19.06,
+      "originalPrice": 30.5,
       "cost": 6.0,
       "margin": 70,
       "discount": 50,
@@ -253,5 +253,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2026-01-01T08:16:17.346669"
+  "lastUpdated": "2026-01-03T08:14:47.322713"
 }

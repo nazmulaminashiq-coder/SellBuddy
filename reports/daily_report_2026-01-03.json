@@ -1,0 +1,22 @@
+{
+  "date": "2026-01-03",
+  "generated_at": "2026-01-03T08:14:47.323459",
+  "products": {
+    "total": 11,
+    "avg_price": 28.01,
+    "avg_margin": 68.1
+  },
+  "orders": {
+    "total_orders": 0,
+    "pending": 0,
+    "processing": 0,
+    "shipped": 0,
+    "revenue": 0
+  },
+  "content": {
+    "generated_today": 3
+  },
+  "recommendations": [
+    "Business is running optimally!"
+  ]
+}
