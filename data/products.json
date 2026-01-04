@@ -5,8 +5,8 @@
       "name": "Galaxy Star Projector",
       "category": "Smart Home",
       "description": "Transform any room into a mesmerizing galaxy. 16 colors, Bluetooth speaker, timer function.",
-      "price": 36.57,
-      "originalPrice": 58.51,
+      "price": 35.5,
+      "originalPrice": 56.8,
       "cost": 12.0,
       "margin": 66,
       "discount": 42,
@@ -253,5 +253,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2026-01-03T08:14:47.322713"
+  "lastUpdated": "2026-01-04T08:15:10.649049"
 }

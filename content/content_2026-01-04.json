@@ -1,0 +1,35 @@
+[
+  {
+    "type": "twitter",
+    "product": "Galaxy Star Projector",
+    "content": {
+      "tweet": "Things I didn't know I needed:\n1. This Galaxy Star Projector\n2. That's it. That's the list.\n\nLink in bio",
+      "thread_potential": true,
+      "best_time": "10:00 AM or 14:00 PM"
+    },
+    "generated_at": "2026-01-04T08:15:10.649431",
+    "scheduled_for": "2026-01-05T01:15:10.649434"
+  },
+  {
+    "type": "twitter",
+    "product": "Electric Back Scrubber",
+    "content": {
+      "tweet": "Things I didn't know I needed:\n1. This Electric Back Scrubber\n2. That's it. That's the list.\n\nLink in bio",
+      "thread_potential": true,
+      "best_time": "9:00 AM or 12:00 PM"
+    },
+    "generated_at": "2026-01-04T08:15:10.649448",
+    "scheduled_for": "2026-01-05T07:15:10.649449"
+  },
+  {
+    "type": "twitter",
+    "product": "Photo Projection Necklace",
+    "content": {
+      "tweet": "Just got this Photo Projection Necklace and I'm obsessed \ud83d\ude2d\n\nLink: [bio]",
+      "thread_potential": true,
+      "best_time": "8:00 AM or 13:00 PM"
+    },
+    "generated_at": "2026-01-04T08:15:10.649460",
+    "scheduled_for": "2026-01-04T21:15:10.649461"
+  }
+]
