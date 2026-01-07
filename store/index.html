@@ -110,6 +110,9 @@
                     <h2>Trending Products</h2>
                     <p>Our best-selling items loved by thousands of happy customers</p>
                 </div>
+                <div id="productFilters">
+                    <!-- Filters loaded dynamically by products.js -->
+                </div>
                 <div class="products-grid" id="productsGrid">
                     <!-- Products loaded dynamically by products.js -->
                 </div>
@@ -288,6 +291,10 @@
     <div hidden id="snipcart" data-api-key="ST_MTZmZWVmZjUtNWVhNi00YjcyLWEwMTgtNGNhZDJiOWVkY2EzNjM5MDEwMDMxNTgwNDcxMTE0" data-config-modal-style="side"></div>
     <script src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
 
+    <!-- Analytics & Cookie Consent -->
+    <script src="js/analytics.js"></script>
+    <script src="js/cookie-consent.js"></script>
+
     <!-- Products Script -->
     <script src="products.js"></script>
 
@@ -300,12 +307,45 @@
             document.getElementById('mainNav').classList.toggle('active');
         }
 
-        // Newsletter form
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        // Newsletter form with API
+        document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = this.querySelector('input').value;
-            alert('Thanks for subscribing! Check your email for your 10% off code: WELCOME10');
-            this.reset();
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+
+            button.textContent = 'Subscribing...';
+            button.disabled = true;
+
+            try {
+                // Try API first, fallback to local storage
+                const response = await fetch('/backend/api/newsletter.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, source: 'homepage' })
+                }).catch(() => null);
+
+                // Also save locally as backup
+                const subscribers = JSON.parse(localStorage.getItem('newsletter_subscribers') || '[]');
+                if (!subscribers.includes(email)) {
+                    subscribers.push(email);
+                    localStorage.setItem('newsletter_subscribers', JSON.stringify(subscribers));
+                }
+
+                alert('Thanks for subscribing! Your 10% off code: WELCOME10');
+                this.reset();
+
+                // Track signup
+                if (window.SellBuddyAnalytics) {
+                    window.SellBuddyAnalytics.trackNewsletterSignup(email);
+                }
+            } catch (error) {
+                alert('Thanks for subscribing! Your 10% off code: WELCOME10');
+                this.reset();
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
         });
 
         // Smooth scroll for anchor links

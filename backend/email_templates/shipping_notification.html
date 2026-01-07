@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Order Has Shipped - SellBuddy</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f5f5f5;">
+        <tr>
+            <td style="padding: 40px 20px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #10b981, #059669); padding: 40px; text-align: center;">
+                            <div style="font-size: 50px; margin-bottom: 15px;">📦</div>
+                            <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 700;">Your Order Has Shipped!</h1>
+                            <p style="margin: 10px 0 0; color: rgba(255,255,255,0.9); font-size: 16px;">It's on its way to you</p>
+                        </td>
+                    </tr>
+
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px;">
+                            <p style="margin: 0 0 20px; color: #333; font-size: 16px; line-height: 1.6;">
+                                Hi {{customer_name}},
+                            </p>
+                            <p style="margin: 0 0 30px; color: #666; font-size: 15px; line-height: 1.7;">
+                                Great news! Your order #{{order_id}} has been shipped and is on its way to you.
+                            </p>
+
+                            <!-- Tracking Info Box -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; margin-bottom: 30px;">
+                                <tr>
+                                    <td style="padding: 25px; text-align: center;">
+                                        <p style="margin: 0 0 10px; color: #166534; font-size: 14px; font-weight: 600;">TRACKING NUMBER</p>
+                                        <p style="margin: 0 0 15px; color: #333; font-size: 24px; font-weight: 700; font-family: monospace;">{{tracking_number}}</p>
+                                        <p style="margin: 0; color: #666; font-size: 14px;">Carrier: {{carrier}}</p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Track Button -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 30px;">
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <a href="{{tracking_url}}" style="display: inline-block; padding: 15px 40px; background-color: #10b981; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 8px;">Track Your Package</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Delivery Timeline -->
+                            <h3 style="margin: 30px 0 20px; color: #333; font-size: 16px;">Estimated Delivery</h3>
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 8px;">
+                                <tr>
+                                    <td style="padding: 25px;">
+                                        <p style="margin: 0; color: #333; font-size: 20px; font-weight: 700;">{{estimated_delivery}}</p>
+                                        <p style="margin: 10px 0 0; color: #666; font-size: 14px;">Delivery times may vary based on location and carrier</p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Shipping Address -->
+                            <h3 style="margin: 30px 0 15px; color: #333; font-size: 16px;">Shipping To</h3>
+                            <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.6;">
+                                {{shipping_address}}
+                            </p>
+
+                            <p style="margin: 40px 0 0; color: #333; font-size: 14px;">
+                                Thanks for shopping with us!<br>
+                                <strong>The SellBuddy Team</strong>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #1e293b; padding: 30px; text-align: center;">
+                            <p style="margin: 0 0 15px; color: #ffffff; font-size: 18px; font-weight: 600;">SellBuddy</p>
+                            <p style="margin: 0; color: #64748b; font-size: 12px;">
+                                &copy; 2025 SellBuddy. All rights reserved.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

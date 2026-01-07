@@ -1,0 +1,18 @@
+{
+    "daily": {},
+    "totals": {
+        "orders": 0,
+        "revenue": 0,
+        "visitors": 0,
+        "conversion_rate": 0
+    },
+    "products": {},
+    "traffic_sources": {
+        "direct": 0,
+        "social": 0,
+        "search": 0,
+        "referral": 0
+    },
+    "top_countries": {},
+    "last_updated": "2025-12-11T00:00:00Z"
+}
