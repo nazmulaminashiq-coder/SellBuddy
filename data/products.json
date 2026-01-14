@@ -114,8 +114,8 @@
       "name": "Portable Blender USB",
       "category": "Kitchen",
       "description": "Personal size blender. USB rechargeable, 6 blades, perfect for smoothies on-the-go.",
-      "price": 30.51,
-      "originalPrice": 48.82,
+      "price": 32.96,
+      "originalPrice": 52.74,
       "cost": 8.0,
       "margin": 68,
       "discount": 44,
@@ -158,8 +158,8 @@
       "name": "Sunset Projection Lamp",
       "category": "Smart Home",
       "description": "Instagram-famous sunset lamp. 180 degree rotation, USB powered, multiple colors.",
-      "price": 21.57,
-      "originalPrice": 34.51,
+      "price": 20.84,
+      "originalPrice": 33.34,
       "cost": 7.0,
       "margin": 70,
       "discount": 43,
@@ -226,8 +226,8 @@
       "name": "Portable Steamer Device",
       "category": "Health & Wellness",
       "description": "Transform your health & wellness experience with our Portable Steamer Device.",
-      "price": 28.18,
-      "originalPrice": 45.09,
+      "price": 28.55,
+      "originalPrice": 45.68,
       "discount": 43,
       "image": "https://picsum.photos/seed/fc25c393/600/600",
       "rating": 4.6,
@@ -322,5 +322,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2026-01-13T08:16:57.173142"
+  "lastUpdated": "2026-01-14T08:16:37.195669"
 }
