@@ -318,8 +318,8 @@
       "name": "Smart Ocean Projector",
       "category": "Smart Home",
       "description": "The viral Smart Ocean Projector everyone's talking about on TikTok.",
-      "price": 30.68,
-      "originalPrice": 49.09,
+      "price": 31.62,
+      "originalPrice": 50.59,
       "discount": 44,
       "image": "https://picsum.photos/seed/eba0be2a/600/600",
       "rating": 4.9,
@@ -345,5 +345,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2026-01-21T08:17:49.757890"
+  "lastUpdated": "2026-01-22T08:17:27.392469"
 }
