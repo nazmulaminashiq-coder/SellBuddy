@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Product - SellBuddy</title>
+    <meta name="description" id="pageDescription" content="Shop quality products at SellBuddy. Free shipping on orders over $50.">
+    <meta name="keywords" content="gadgets, smart home, lifestyle products">
+
+    <!-- Open Graph -->
+    <meta property="og:title" id="ogTitle" content="Product - SellBuddy">
+    <meta property="og:description" id="ogDescription" content="Shop quality products at SellBuddy">
+    <meta property="og:type" content="product">
+    <meta property="og:url" id="ogUrl" content="">
+    <meta property="og:image" id="ogImage" content="">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" id="canonicalUrl" href="">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .product-gallery {
+            position: sticky;
+            top: 100px;
+        }
+        .main-image {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1rem;
+        }
+        .main-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        .product-details h1 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .stars {
+            color: var(--accent);
+            font-size: 1.25rem;
+        }
+        .rating-text {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        .product-category-badge {
+            background: var(--primary-light);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .product-price-large {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .price-current {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .price-original {
+            font-size: 1.5rem;
+            color: var(--gray-light);
+            text-decoration: line-through;
+        }
+        .price-discount {
+            background: #fef2f2;
+            color: var(--danger);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .product-description {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .product-features {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+        }
+        .product-features h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+        }
+        .feature-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--secondary);
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .quantity-selector label {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        .qty-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .qty-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .add-to-cart-large {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .wishlist-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .wishlist-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .wishlist-btn.active {
+            background: var(--danger);
+            border-color: var(--danger);
+            color: var(--white);
+        }
+        .trust-icons {
+            display: flex;
+            justify-content: space-around;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: var(--radius);
+            margin-top: 2rem;
+        }
+        .trust-icon {
+            text-align: center;
+        }
+        .trust-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .trust-icon span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        .product-tabs {
+            margin-top: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+        }
+        .tabs-header {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 2rem;
+        }
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        .tab-btn:hover, .tab-btn.active {
+            color: var(--primary);
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+        .tab-content {
+            display: none;
+            padding: 1rem 0;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .reviews-summary {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        .review-score {
+            text-align: center;
+        }
+        .review-score .score {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .review-item {
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .review-date {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+        .review-text {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        .related-products {
+            padding: 4rem 2rem;
+            background: var(--light);
+        }
+        @media (max-width: 968px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .product-gallery {
+                position: static;
+            }
+            .main-image img {
+                height: 400px;
+            }
+            .product-details h1 {
+                font-size: 1.75rem;
+            }
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">Sell<span>Buddy</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"></path>
+                </svg>
+            </button>
+            <nav id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Shop</a>
+                <a href="about.html">About</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+                <button class="snipcart-checkout cart-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    Cart (<span class="snipcart-items-count">0</span>)
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumb -->
+        <div class="container" style="padding: 1rem 2rem;">
+            <nav class="breadcrumb" style="color: var(--gray);">
+                <a href="index.html" style="color: var(--primary);">Home</a> /
+                <a href="index.html#products" style="color: var(--primary);">Products</a> /
+                <span id="breadcrumbProduct">Product</span>
+            </nav>
+        </div>
+
+        <!-- Product Detail -->
+        <section class="product-detail" id="productDetail">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img id="productImage" src="" alt="Product Image">
+                </div>
+            </div>
+
+            <div class="product-details">
+                <div class="product-meta">
+                    <span class="product-category-badge" id="productCategory">Category</span>
+                    <span id="productBadge" class="discount-badge" style="display: none;"></span>
+                </div>
+
+                <h1 id="productName">Loading...</h1>
+
+                <div class="product-rating">
+                    <span class="stars" id="productStars"></span>
+                    <span class="rating-text" id="productRating"></span>
+                </div>
+
+                <div class="product-price-large">
+                    <span class="price-current" id="productPrice">$0.00</span>
+                    <span class="price-original" id="productOriginalPrice">$0.00</span>
+                    <span class="price-discount" id="productDiscount">0% OFF</span>
+                </div>
+
+                <p class="product-description" id="productDescription">Loading product details...</p>
+
+                <div class="product-features">
+                    <h3>Key Features</h3>
+                    <div class="features-list" id="productFeatures">
+                        <!-- Features loaded dynamically -->
+                    </div>
+                </div>
+
+                <div class="quantity-selector">
+                    <label>Quantity:</label>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="updateQuantity(-1)">-</button>
+                        <input type="number" class="qty-input" id="quantity" value="1" min="1" max="10">
+                        <button class="qty-btn" onclick="updateQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <button class="add-to-cart add-to-cart-large snipcart-add-item" id="addToCartBtn"
+                    data-item-id=""
+                    data-item-name=""
+                    data-item-price=""
+                    data-item-url=""
+                    data-item-description=""
+                    data-item-image=""
+                    data-item-quantity="1">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    Add to Cart
+                </button>
+
+                <button class="wishlist-btn" id="wishlistBtn" onclick="toggleWishlist()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    Add to Wishlist
+                </button>
+
+                <div class="trust-icons">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                        <span>Free Shipping $50+</span>
+                    </div>
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>30-Day Returns</span>
+                    </div>
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span>Secure Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Tabs -->
+        <section class="product-tabs">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="switchTab('description')">Description</button>
+                <button class="tab-btn" onclick="switchTab('reviews')">Reviews</button>
+                <button class="tab-btn" onclick="switchTab('shipping')">Shipping & Returns</button>
+            </div>
+
+            <div class="tab-content active" id="tab-description">
+                <h3>Product Details</h3>
+                <p id="fullDescription">Loading...</p>
+            </div>
+
+            <div class="tab-content" id="tab-reviews">
+                <div class="reviews-summary">
+                    <div class="review-score">
+                        <div class="score" id="avgRating">4.8</div>
+                        <div class="stars" id="avgStars"></div>
+                        <div style="color: var(--gray); font-size: 0.9rem;"><span id="totalReviews">0</span> reviews</div>
+                    </div>
+                </div>
+                <div id="reviewsList">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer-name">Sarah M.</span>
+                            <span class="review-date">December 5, 2025</span>
+                        </div>
+                        <div class="stars" style="margin-bottom: 0.5rem;">★★★★★</div>
+                        <p class="review-text">Absolutely love this product! Exceeded my expectations. Fast shipping and great quality.</p>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer-name">James R.</span>
+                            <span class="review-date">December 3, 2025</span>
+                        </div>
+                        <div class="stars" style="margin-bottom: 0.5rem;">★★★★★</div>
+                        <p class="review-text">Great value for money. Works exactly as described. Would definitely recommend!</p>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer-name">Emily K.</span>
+                            <span class="review-date">November 28, 2025</span>
+                        </div>
+                        <div class="stars" style="margin-bottom: 0.5rem;">★★★★☆</div>
+                        <p class="review-text">Very happy with my purchase. Shipping took a bit longer than expected but the product quality is excellent.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-shipping">
+                <h3>Shipping Information</h3>
+                <ul style="color: var(--gray); line-height: 2;">
+                    <li>Free standard shipping on orders over $50</li>
+                    <li>Standard shipping: 7-15 business days</li>
+                    <li>Express shipping available at checkout</li>
+                    <li>We ship to most countries worldwide</li>
+                </ul>
+                <h3 style="margin-top: 2rem;">Return Policy</h3>
+                <ul style="color: var(--gray); line-height: 2;">
+                    <li>30-day money-back guarantee</li>
+                    <li>Items must be unused and in original packaging</li>
+                    <li>Contact us to initiate a return</li>
+                    <li>Refunds processed within 5-7 business days</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Related Products -->
+        <section class="related-products">
+            <div class="container">
+                <div class="section-title">
+                    <h2>You May Also Like</h2>
+                    <p>Similar products you might be interested in</p>
+                </div>
+                <div class="products-grid" id="relatedProducts">
+                    <!-- Related products loaded dynamically -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SellBuddy</h4>
+                <p>Your trusted source for quality products at great prices.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html#products">Shop</a>
+                <a href="about.html">About</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="shipping.html">Shipping Info</a>
+                <a href="returns.html">Returns</a>
+                <a href="track-order.html">Track Order</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SellBuddy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" id="productSchema">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "",
+        "image": "",
+        "description": "",
+        "brand": {
+            "@type": "Brand",
+            "name": "SellBuddy"
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": "",
+            "priceCurrency": "USD",
+            "price": "",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "SellBuddy"
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "",
+            "reviewCount": ""
+        }
+    }
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="ST_MTZmZWVmZjUtNWVhNi00YjcyLWEwMTgtNGNhZDJiOWVkY2EzNjM5MDEwMDMxNTgwNDcxMTE0" data-config-modal-style="side"></div>
+    <script src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
+
+    <!-- Chat Widget -->
+    <script src="chat_widget.js"></script>
+
+    <script>
+        const STORE_URL = 'https://nazmulaminashiq-coder.github.io/SellBuddy/store';
+
+        // Product data
+        const products = [
+            {
+                id: "galaxy-star-projector-pro",
+                name: "Galaxy Star Projector Pro",
+                category: "Smart Home",
+                description: "Transform any room into a mesmerizing galaxy with 16 million colors, built-in Bluetooth speaker, and smart timer. The #1 TikTok viral product of 2025.",
+                fullDescription: "The Galaxy Star Projector Pro is the ultimate room transformation device. With 16 million color options, built-in Bluetooth speaker for ambient music, and a convenient timer function, you can create the perfect atmosphere for sleep, relaxation, or parties. The projector features adjustable brightness, multiple projection modes, and a sleek compact design that fits anywhere.",
+                price: 34.99,
+                originalPrice: 59.99,
+                discount: 42,
+                image: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&h=600&fit=crop&q=80",
+                rating: 4.8,
+                reviews: 2847,
+                badge: "BESTSELLER",
+                features: ["16M colors", "Bluetooth speaker", "Timer function", "Remote control"]
+            },
+            {
+                id: "posture-corrector-pro",
+                name: "Posture Corrector Pro",
+                category: "Health & Wellness",
+                description: "Fix your posture naturally with our doctor-recommended back brace. Invisible under clothes, comfortable for all-day wear.",
+                fullDescription: "The Posture Corrector Pro is designed by orthopedic specialists to help you maintain proper posture throughout the day. Made with breathable, lightweight materials, it's comfortable enough for all-day wear and invisible under most clothing. Regular use can help reduce back pain, improve confidence, and prevent long-term posture problems.",
+                price: 24.99,
+                originalPrice: 44.99,
+                discount: 44,
+                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop&q=80",
+                rating: 4.7,
+                reviews: 3421,
+                badge: "TOP RATED",
+                features: ["Invisible design", "Breathable mesh", "Fully adjustable", "Doctor recommended"]
+            },
+            {
+                id: "led-strip-lights-smart",
+                name: "Smart LED Strip Lights 65ft",
+                category: "Smart Home",
+                description: "65ft of stunning RGB LED lights with app control, music sync, and Alexa compatibility. Transform any room into an aesthetic paradise.",
+                fullDescription: "Transform your space with 65 feet of vibrant, customizable LED strip lights. Control colors, brightness, and effects through our easy-to-use app or voice commands via Alexa and Google Home. The music sync feature makes these perfect for parties, gaming setups, or creating the perfect ambiance for any occasion.",
+                price: 29.99,
+                originalPrice: 54.99,
+                discount: 45,
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop&q=80",
+                rating: 4.6,
+                reviews: 5234,
+                badge: "VIRAL",
+                features: ["65ft length", "Music sync", "App control", "Works with Alexa"]
+            },
+            {
+                id: "portable-blender-usb",
+                name: "Portable Blender USB-C",
+                category: "Kitchen",
+                description: "Fresh smoothies anywhere! USB-C rechargeable blender with 6 powerful blades. Perfect for gym, office, or travel.",
+                fullDescription: "Never compromise on your health goals with the Portable Blender USB-C. This powerful personal blender features 6 stainless steel blades, a 20oz capacity, and USB-C fast charging. One full charge gives you 15+ blends, making it perfect for the gym, office, travel, or anywhere you need fresh, healthy smoothies.",
+                price: 27.99,
+                originalPrice: 49.99,
+                discount: 44,
+                image: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=600&h=600&fit=crop&q=80",
+                rating: 4.7,
+                reviews: 4102,
+                badge: "GYM ESSENTIAL",
+                features: ["USB-C charging", "6 blades", "20oz capacity", "15+ blends/charge"]
+            },
+            {
+                id: "no-pull-dog-harness",
+                name: "No-Pull Dog Harness",
+                category: "Pet Supplies",
+                description: "Adjustable, breathable mesh harness with reflective straps for night walks. Stops pulling instantly.",
+                fullDescription: "Keep your furry friend safe and comfortable with our No-Pull Dog Harness. The front clip design naturally discourages pulling without choking. Made with breathable mesh for comfort in any weather, reflective straps for safety at night, and adjustable straps for the perfect fit. Available in all sizes from XS to XL.",
+                price: 24.99,
+                originalPrice: 44.99,
+                discount: 44,
+                image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop&q=80",
+                rating: 4.8,
+                reviews: 2156,
+                badge: "PET FAVORITE",
+                features: ["No-pull design", "Reflective straps", "Breathable mesh", "All sizes XS-XL"]
+            },
+            {
+                id: "photo-projection-necklace",
+                name: "Photo Projection Necklace",
+                category: "Accessories",
+                description: "Custom photo projection pendant. Upload your favorite photo and we'll create a magical memory you can wear.",
+                fullDescription: "Create a truly unique gift with our Photo Projection Necklace. Simply send us your favorite photo and we'll create a stunning pendant that projects your image when held up to light. Made with sterling silver, featuring an adjustable chain length, and presented in a beautiful gift box. Perfect for anniversaries, birthdays, or any special occasion.",
+                price: 29.99,
+                originalPrice: 54.99,
+                discount: 45,
+                image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=600&fit=crop&q=80",
+                rating: 4.9,
+                reviews: 1823,
+                badge: "PERFECT GIFT",
+                features: ["Custom photo", "Sterling silver", "Adjustable chain", "Gift box included"]
+            },
+            {
+                id: "sunset-projection-lamp",
+                name: "Sunset Projection Lamp",
+                category: "Smart Home",
+                description: "Instagram-famous sunset lamp. Create stunning golden hour vibes any time of day. 180 rotation, USB powered.",
+                fullDescription: "Capture the magic of golden hour any time with our Sunset Projection Lamp. This Instagram-famous lamp projects a beautiful warm glow that's perfect for photography, ambiance, or simply relaxing. Features 180-degree rotation for the perfect angle, USB power for convenience, and multiple color options including the classic sunset orange.",
+                price: 22.99,
+                originalPrice: 39.99,
+                discount: 43,
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&q=80",
+                rating: 4.6,
+                reviews: 3567,
+                badge: "INSTAGRAM FAMOUS",
+                features: ["180 rotation", "USB powered", "Multiple colors", "Perfect for photos"]
+            },
+            {
+                id: "ice-roller-face",
+                name: "Ice Roller Face Massager",
+                category: "Beauty Tools",
+                description: "Depuff and refresh your skin instantly with our ice roller. Reduces puffiness, tightens pores. TikTok skincare essential!",
+                fullDescription: "Elevate your skincare routine with the Ice Roller Face Massager. This TikTok-famous beauty tool instantly reduces puffiness, tightens pores, and gives you a refreshed, glowing complexion. The stainless steel roller head stays cold for extended use, and the ergonomic handle makes it easy to use. Perfect for morning routines, post-workout recovery, or whenever you need a refresh.",
+                price: 14.99,
+                originalPrice: 29.99,
+                discount: 50,
+                image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=600&fit=crop&q=80",
+                rating: 4.7,
+                reviews: 4521,
+                badge: "50% OFF",
+                features: ["Reduces puffiness", "Tightens pores", "Stainless steel", "Stays cold longer"]
+            }
+        ];
+
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        // Find product
+        const product = products.find(p => p.id === productId);
+
+        if (product) {
+            loadProduct(product);
+        } else {
+            // Redirect to 404 or show error
+            document.getElementById('productDetail').innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+                    <h2>Product Not Found</h2>
+                    <p style="color: var(--gray); margin-bottom: 2rem;">The product you're looking for doesn't exist.</p>
+                    <a href="index.html#products" class="btn btn-accent">Browse Products</a>
+                </div>
+            `;
+        }
+
+        function loadProduct(product) {
+            // Update page metadata
+            document.getElementById('pageTitle').textContent = `${product.name} - SellBuddy`;
+            document.getElementById('pageDescription').content = product.description;
+            document.getElementById('ogTitle').content = product.name;
+            document.getElementById('ogDescription').content = product.description;
+            document.getElementById('ogUrl').content = `${STORE_URL}/product.html?id=${product.id}`;
+            document.getElementById('ogImage').content = product.image;
+            document.getElementById('canonicalUrl').href = `${STORE_URL}/product.html?id=${product.id}`;
+
+            // Update breadcrumb
+            document.getElementById('breadcrumbProduct').textContent = product.name;
+
+            // Update product details
+            document.getElementById('productImage').src = product.image;
+            document.getElementById('productImage').alt = product.name;
+            document.getElementById('productCategory').textContent = product.category;
+            document.getElementById('productName').textContent = product.name;
+            document.getElementById('productDescription').textContent = product.description;
+            document.getElementById('fullDescription').textContent = product.fullDescription;
+            document.getElementById('productPrice').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('productOriginalPrice').textContent = `$${product.originalPrice.toFixed(2)}`;
+            document.getElementById('productDiscount').textContent = `${product.discount}% OFF`;
+
+            // Update badge
+            if (product.badge) {
+                const badgeEl = document.getElementById('productBadge');
+                badgeEl.textContent = product.badge;
+                badgeEl.style.display = 'inline-block';
+            }
+
+            // Update rating
+            document.getElementById('productStars').textContent = renderStars(product.rating);
+            document.getElementById('productRating').textContent = `${product.rating} (${product.reviews.toLocaleString()} reviews)`;
+            document.getElementById('avgRating').textContent = product.rating;
+            document.getElementById('avgStars').textContent = renderStars(product.rating);
+            document.getElementById('totalReviews').textContent = product.reviews.toLocaleString();
+
+            // Update features
+            const featuresHtml = product.features.map(f => `
+                <div class="feature-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>${f}</span>
+                </div>
+            `).join('');
+            document.getElementById('productFeatures').innerHTML = featuresHtml;
+
+            // Update Add to Cart button
+            const addBtn = document.getElementById('addToCartBtn');
+            addBtn.setAttribute('data-item-id', product.id);
+            addBtn.setAttribute('data-item-name', product.name);
+            addBtn.setAttribute('data-item-price', product.price);
+            addBtn.setAttribute('data-item-url', `${STORE_URL}/product.html?id=${product.id}`);
+            addBtn.setAttribute('data-item-description', product.description);
+            addBtn.setAttribute('data-item-image', product.image);
+
+            // Update structured data
+            const schema = JSON.parse(document.getElementById('productSchema').textContent);
+            schema.name = product.name;
+            schema.image = product.image;
+            schema.description = product.description;
+            schema.offers.url = `${STORE_URL}/product.html?id=${product.id}`;
+            schema.offers.price = product.price;
+            schema.aggregateRating.ratingValue = product.rating;
+            schema.aggregateRating.reviewCount = product.reviews;
+            document.getElementById('productSchema').textContent = JSON.stringify(schema);
+
+            // Load related products
+            loadRelatedProducts(product);
+
+            // Check wishlist
+            checkWishlist(product.id);
+        }
+
+        function renderStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalf = rating % 1 >= 0.5;
+            let stars = '\u2605'.repeat(fullStars);
+            if (hasHalf) stars += '\u00BD';
+            stars += '\u2606'.repeat(5 - fullStars - (hasHalf ? 1 : 0));
+            return stars;
+        }
+
+        function loadRelatedProducts(currentProduct) {
+            const related = products
+                .filter(p => p.id !== currentProduct.id)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 4);
+
+            const grid = document.getElementById('relatedProducts');
+            grid.innerHTML = related.map(p => `
+                <div class="product-card">
+                    <a href="product.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+                        <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy">
+                        <div class="product-info">
+                            <span class="product-category">${p.category}</span>
+                            <h3 class="product-name">${p.name}</h3>
+                            <div class="product-price">
+                                <span class="current-price">$${p.price.toFixed(2)}</span>
+                                <span class="original-price">$${p.originalPrice.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        function updateQuantity(change) {
+            const input = document.getElementById('quantity');
+            let value = parseInt(input.value) + change;
+            if (value < 1) value = 1;
+            if (value > 10) value = 10;
+            input.value = value;
+            document.getElementById('addToCartBtn').setAttribute('data-item-quantity', value);
+        }
+
+        function switchTab(tabName) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        function toggleWishlist() {
+            const btn = document.getElementById('wishlistBtn');
+            const productId = urlParams.get('id');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+
+            if (wishlist.includes(productId)) {
+                wishlist = wishlist.filter(id => id !== productId);
+                btn.classList.remove('active');
+                btn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    Add to Wishlist
+                `;
+            } else {
+                wishlist.push(productId);
+                btn.classList.add('active');
+                btn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    In Wishlist
+                `;
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        function checkWishlist(productId) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const btn = document.getElementById('wishlistBtn');
+
+            if (wishlist.includes(productId)) {
+                btn.classList.add('active');
+                btn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    In Wishlist
+                `;
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mainNav').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
