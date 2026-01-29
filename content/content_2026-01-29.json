@@ -1,0 +1,37 @@
+[
+  {
+    "type": "twitter",
+    "product": "Photo Projection Necklace",
+    "content": {
+      "tweet": "Things I didn't know I needed:\n1. This Photo Projection Necklace\n2. That's it. That's the list.\n\nLink in bio",
+      "thread_potential": false,
+      "best_time": "8:00 AM or 13:00 PM"
+    },
+    "generated_at": "2026-01-29T08:26:12.854096",
+    "scheduled_for": "2026-01-29T11:26:12.854099"
+  },
+  {
+    "type": "tiktok",
+    "product": "LED Face Mask",
+    "content": {
+      "hook": "Wait why is nobody talking about this LED Face Mask",
+      "caption": "The LED Face Mask that broke my TikTok algorithm\n\nLink in bio to get yours!\n\n#fyp #viral #tiktokfinds #amazonfinds #musthaves #trending",
+      "suggested_sound": "trending sound - aesthetic vibes",
+      "best_time": "7:00 PM"
+    },
+    "generated_at": "2026-01-29T08:26:12.854114",
+    "scheduled_for": "2026-01-30T01:26:12.854115"
+  },
+  {
+    "type": "tiktok",
+    "product": "Posture Corrector Pro",
+    "content": {
+      "hook": "Wait why is nobody talking about this Posture Corrector Pro",
+      "caption": "This Posture Corrector Pro is going VIRAL for a reason\n\nLink in bio to get yours!\n\n#fyp #viral #tiktokfinds #amazonfinds #musthaves #trending",
+      "suggested_sound": "trending sound - aesthetic vibes",
+      "best_time": "8:00 PM"
+    },
+    "generated_at": "2026-01-29T08:26:12.854123",
+    "scheduled_for": "2026-01-29T13:26:12.854124"
+  }
+]

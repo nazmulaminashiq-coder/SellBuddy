@@ -226,8 +226,8 @@
       "name": "Portable Steamer Device",
       "category": "Health & Wellness",
       "description": "Transform your health & wellness experience with our Portable Steamer Device.",
-      "price": 29.27,
-      "originalPrice": 46.83,
+      "price": 29.15,
+      "originalPrice": 46.64,
       "discount": 43,
       "image": "https://picsum.photos/seed/fc25c393/600/600",
       "rating": 4.6,
@@ -249,8 +249,8 @@
       "name": "Gua Sha Face Roller",
       "category": "Beauty Tools",
       "description": "Upgrade your life with this amazing Gua Sha Face Roller.",
-      "price": 16.51,
-      "originalPrice": 26.42,
+      "price": 18.01,
+      "originalPrice": 28.82,
       "discount": 49,
       "image": "https://picsum.photos/seed/58ef57c0/600/600",
       "rating": 4.6,
@@ -391,5 +391,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2026-01-28T08:17:58.635036"
+  "lastUpdated": "2026-01-29T08:26:12.853609"
 }
