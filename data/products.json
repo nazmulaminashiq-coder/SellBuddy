@@ -203,8 +203,8 @@
       "name": "Advanced Posture Brace",
       "category": "Health & Wellness",
       "description": "Upgrade your life with this amazing Advanced Posture Brace.",
-      "price": 20.08,
-      "originalPrice": 32.13,
+      "price": 22.04,
+      "originalPrice": 35.26,
       "discount": 38,
       "image": "https://source.unsplash.com/600x600/?advanced+posture+brace",
       "rating": 4.8,
@@ -272,8 +272,8 @@
       "name": "USB Reading Lamp",
       "category": "Smart Home",
       "description": "The viral USB Reading Lamp everyone's talking about on TikTok.",
-      "price": 24.9,
-      "originalPrice": 39.84,
+      "price": 26.7,
+      "originalPrice": 42.72,
       "discount": 52,
       "image": "https://picsum.photos/seed/f3a32994/600/600",
       "rating": 4.6,
@@ -318,8 +318,8 @@
       "name": "Adjustable Dog Bowl",
       "category": "Pet Supplies",
       "description": "Transform your pet supplies experience with our Adjustable Dog Bowl.",
-      "price": 30.21,
-      "originalPrice": 48.34,
+      "price": 30.53,
+      "originalPrice": 48.85,
       "discount": 36,
       "image": "https://source.unsplash.com/600x600/?adjustable+dog+bowl",
       "rating": 4.6,
@@ -391,5 +391,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2026-02-02T08:29:55.977473"
+  "lastUpdated": "2026-02-03T08:24:48.479791"
 }
