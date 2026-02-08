@@ -341,8 +341,8 @@
       "name": "LED Face Mask",
       "category": "Beauty Tools",
       "description": "The viral LED Face Mask everyone's talking about on TikTok.",
-      "price": 55.99,
-      "originalPrice": 89.58,
+      "price": 59.87,
+      "originalPrice": 95.79,
       "discount": 43,
       "image": "https://source.unsplash.com/600x600/?led+face+mask",
       "rating": 4.9,
@@ -414,5 +414,5 @@
     "Kitchen",
     "Health & Wellness"
   ],
-  "lastUpdated": "2026-02-06T08:28:46.788505"
+  "lastUpdated": "2026-02-08T08:19:58.585890"
 }
